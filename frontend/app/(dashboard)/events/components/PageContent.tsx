@@ -1,3 +1,4 @@
+"use client";
 
 // core
 import { useEffect, useState } from 'react';
