@@ -56,7 +56,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ## 2. Docker Compose bilan ishga tushirish
 
-Rootda `.env` bo‘lishi kerak (1-bo‘limda `.env.example` dan nusxa oling). Keyin:
+Rootda `.env` bo‘lishi kerak (1-bo‘limda `.env.example` dan nusxa oling va Frontend: frontend/.env.example → frontend/.env. Keyin:
 
 ```bash
 docker compose up --build
