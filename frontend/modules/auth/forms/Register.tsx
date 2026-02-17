@@ -7,6 +7,9 @@ import * as yup from 'yup';
 import type { AuthResponse } from '@/types';
 import type { RegisterFormValues } from '../hooks/useRegister';
 import useRegister from '../hooks/useRegister';
+import { useAuthStore } from '@/store/auth-store';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const registerSchema = yup.object().shape({
   name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters'),
@@ -31,20 +34,17 @@ export interface RegisterFormChildrenProps {
 
 export interface RegisterFormProps {
   className?: string;
-  onSuccess?: (data: AuthResponse) => void;
-  onError?: (error: string) => void;
-  onFinally?: () => void;
   children: (props: RegisterFormChildrenProps) => React.ReactNode;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
-  onSuccess = () => { },
-  onError = () => { },
-  onFinally = () => { },
   children,
   className,
 }) => {
+
   const { registerUser, isSubmitting } = useRegister();
+  const { setAuth } = useAuthStore();
+  const router = useRouter();
 
   const methods = useForm<RegisterFormValues>({
     resolver: yupResolver(registerSchema),
@@ -56,13 +56,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const onSubmit = async (values: RegisterFormValues) => {
     try {
       const data = await registerUser(values);
-      onSuccess(data);
+      setAuth(data.user, data.accessToken, data.refreshToken);
+      toast.success('Registration successful!');
+      router.push('/events');
+
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       const message = err.response?.data?.message || 'Registration failed';
-      onError(message);
-    } finally {
-      onFinally();
+      toast.error(message)
     }
   };
 

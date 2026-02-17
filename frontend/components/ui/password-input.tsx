@@ -3,7 +3,6 @@
 import { forwardRef, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Input, type InputProps } from './input';
-import { cn } from '@/lib/utils';
 
 type PasswordInputProps = Omit<InputProps, 'type'>;
 

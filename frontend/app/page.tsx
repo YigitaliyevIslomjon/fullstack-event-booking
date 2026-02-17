@@ -1,20 +1,14 @@
-'use client';
 // core
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/store/auth-store';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  const router = useRouter();
-  const { isAuthenticated } = useAuthStore();
-
-  // hooks
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    }
-  }, []);
+export default async function Home() {
+  const cookieStore = await cookies();
+  if (cookieStore.get('accessToken')) {
+    redirect('/events');
+  } {
+    redirect('/login');
+  }
 
   return null;
-
 }

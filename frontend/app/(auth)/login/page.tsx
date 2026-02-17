@@ -1,17 +1,9 @@
-'use client';
-
 // core
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 // components
-import { Input } from '@/components/ui/input';
-import { PasswordInput } from '@/components/ui/password-input';
-import { Button } from '@/components/ui';
-import * as AuthModule from '@/modules/auth';
+import LoginForm from './components/Form';
 
-export default function LoginPage() {
-  const router = useRouter();
-
+export default async function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
       <div className="w-full max-w-md">
@@ -21,41 +13,7 @@ export default function LoginPage() {
             <p className="text-gray-600">Sign in to book amazing events</p>
           </div>
 
-          <AuthModule.Forms.Login
-
-            className="space-y-6"
-          >
-            {({ isSubmitting, register, errors }) => (
-              <>
-                <Input
-                  id="email"
-                  label="Email Address"
-                  placeholder="you@example.com"
-                  error={errors.email?.message}
-                  {...register('email')}
-                />
-
-                <PasswordInput
-                  id="password"
-                  label="Password"
-                  placeholder="Enter your password"
-                  error={errors.password?.message}
-                  {...register('password')}
-                />
-
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  fullWidth
-                  loading={isSubmitting}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Signing in...' : 'Sign In'}
-                </Button>
-              </>
-            )}
-          </AuthModule.Forms.Login>
+          <LoginForm />
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">

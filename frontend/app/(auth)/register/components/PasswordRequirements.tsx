@@ -19,7 +19,7 @@ export default function PasswordRequirements() {
   const value = (password ?? '') as string;
 
   return (
-    <ul className="mt-2 space-y-1.5">
+    <ul className="space-y-1.5 mb-2">
       {requirements.map(({ key, label, check }) => {
         const met = check(value);
         return (
