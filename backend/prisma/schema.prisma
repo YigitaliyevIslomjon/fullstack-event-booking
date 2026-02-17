@@ -1,0 +1,60 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String         // bcrypt hashed
+  name          String
+  bookings      Booking[]
+  refreshTokens RefreshToken[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isRevoked Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id               String    @id @default(uuid())
+  title            String
+  description      String
+  date             DateTime
+  venue            String
+  totalTickets     Int
+  remainingTickets Int
+  price            Float
+  bookings         Booking[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Booking {
+  id        String        @id @default(uuid())
+  user      User          @relation(fields: [userId], references: [id])
+  userId    String
+  event     Event         @relation(fields: [eventId], references: [id])
+  eventId   String
+  status    BookingStatus @default(CONFIRMED)
+  createdAt DateTime      @default(now())
+
+  @@unique([userId, eventId]) // Har bir foydalanuvchi uchun har bir tadbirga bitta bron
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+}

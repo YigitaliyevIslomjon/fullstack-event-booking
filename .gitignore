@@ -1,0 +1,4 @@
+# Environment (secrets – do not commit)
+.env
+# OS
+.DS_Store
