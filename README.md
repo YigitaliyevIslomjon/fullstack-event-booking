@@ -22,7 +22,7 @@ Tadbirlarni bron qilish tizimi — race condition va ortiqcha sotuvga chidamli R
 
 ## 1. Muhit o‘zgaruvchilari
 
-Loyiha rootida `.env` yarating (`.env.example` dan nusxa oling):
+**Umumiy (Docker Compose va root):** Loyiha rootida `.env` yarating — `.env.example` dan nusxa oling:
 
 ```bash
 cp .env.example .env
@@ -42,21 +42,32 @@ JWT_REFRESH_SECRET=your-refresh-secret
 
 # Backend port
 PORT=3001
-```
 
-**Lokal frontend** uchun `frontend/.env` da:
-
-```env
+# Frontend — API manzili (Docker build va lokal uchun)
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
+
+**Lokal ishga tushirishda** har bir qatlam o‘z papkasidagi `.env.example` dan nusxa olib `.env` yaratadi:
+
+- **Frontend:** `frontend/.env.example` → `frontend/.env` (asosan `NEXT_PUBLIC_API_URL`)
+- **Backend:** `backend/.env.example` → `backend/.env` (`DATABASE_URL`, JWT, `PORT`)
 
 ---
 
 ## 2. Docker Compose bilan ishga tushirish
 
-Barcha servislar (PostgreSQL, backend, frontend) bitta buyruqda:
+Avval rootda `.env` bo‘lishi kerak (`.env.example` dan nusxa oling). Keyin barcha servislarni ishga tushiring.
+
+**Variant A — skript orqali (tavsiya):** `.env` yo‘q bo‘lsa avtomatik `.env.example` dan yaratadi, keyin compose ishga tushadi:
 
 ```bash
+./scripts/start-docker.sh
+```
+
+**Variant B — qo‘lda:**
+
+```bash
+cp .env.example .env   # birinchi marta
 docker compose up --build
 ```
 
@@ -64,7 +75,7 @@ docker compose up --build
 - **Backend API:** http://localhost:3001  
 - **PostgreSQL:** localhost:5433 (host port)
 
-DB migratsiya va seed avtomatik ishlaydi.
+DB migratsiya va seed avtomatik ishlaydi. Frontend build vaqtida `NEXT_PUBLIC_API_URL` root `.env` dan oladi (docker-compose build args orqali).
 
 ---
 
