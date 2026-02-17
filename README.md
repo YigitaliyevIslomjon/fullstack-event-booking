@@ -56,18 +56,9 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ## 2. Docker Compose bilan ishga tushirish
 
-Avval rootda `.env` bo‘lishi kerak (`.env.example` dan nusxa oling). Keyin barcha servislarni ishga tushiring.
-
-**Variant A — skript orqali (tavsiya):** `.env` yo‘q bo‘lsa avtomatik `.env.example` dan yaratadi, keyin compose ishga tushadi:
+Rootda `.env` bo‘lishi kerak (1-bo‘limda `.env.example` dan nusxa oling). Keyin:
 
 ```bash
-./scripts/start-docker.sh
-```
-
-**Variant B — qo‘lda:**
-
-```bash
-cp .env.example .env   # birinchi marta
 docker compose up --build
 ```
 
@@ -75,7 +66,7 @@ docker compose up --build
 - **Backend API:** http://localhost:3001  
 - **PostgreSQL:** localhost:5433 (host port)
 
-DB migratsiya va seed avtomatik ishlaydi. Frontend build vaqtida `NEXT_PUBLIC_API_URL` root `.env` dan oladi (docker-compose build args orqali).
+DB migratsiya va seed avtomatik ishlaydi.
 
 ---
 
