@@ -1,7 +1,7 @@
 // core
 import Link from 'next/link';
 // components
-import LoginForm from './components/Form';
+import { Form } from './components';
 
 export default async function LoginPage() {
   return (
@@ -13,7 +13,7 @@ export default async function LoginPage() {
             <p className="text-gray-600">Sign in to book amazing events</p>
           </div>
 
-          <LoginForm />
+          <Form />
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
