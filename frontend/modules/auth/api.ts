@@ -1,5 +1,5 @@
 import apiClient from "@/services/api-client";
-import { AuthResponse } from "@/services/types";
+import { AuthResponse } from "@/types";
 
 export const register = async (email: string, password: string, name: string): Promise<AuthResponse> => {
   const response = await apiClient.post<AuthResponse>('/auth/register', {

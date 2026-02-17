@@ -14,7 +14,7 @@ import { PasswordRequirements } from './components';
 // utils
 import toast from 'react-hot-toast';
 
-import type { AuthResponse } from '@/services/types';
+import type { AuthResponse } from '@/types';
 import type { RegisterFormChildrenProps } from '@/modules/auth/forms/Register';
 import * as AuthModule from '@/modules/auth';
 

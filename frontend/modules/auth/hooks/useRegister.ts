@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { register } from '@/modules/auth/api';
-import type { AuthResponse } from '@/services/types';
+import type { AuthResponse } from '@/types';
 
 export interface RegisterFormValues {
   name: string;

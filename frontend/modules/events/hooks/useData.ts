@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { getEvents } from '@/modules/events/api';
 import toast from 'react-hot-toast';
 import { FILTER_SORT_BY, FILTER_SORT_ORDER } from '@/modules/events/constants';
-import { Event } from '@/services/types';
+import { Event } from '@/types';
 
 const LIMIT = 10;
 

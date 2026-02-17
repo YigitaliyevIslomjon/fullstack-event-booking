@@ -1,5 +1,5 @@
 import apiClient from '@/services/api-client';
-import { Event, EventsResponse } from '@/services/types';
+import { Event, EventsResponse } from '@/types';
 
 export const getEvents = async (params?: {
   page?: number;

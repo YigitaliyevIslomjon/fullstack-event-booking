@@ -13,7 +13,7 @@ import { getBookings, cancelBooking } from '@/modules/bookings/api';
 import toast from 'react-hot-toast';
 import { formatEventDate, formatEventTime } from '@/lib/utils';
 // types
-import { Booking } from '@/services/types';
+import { Booking } from '@/types';
 
 export default function BookingsPage() {
 

@@ -10,7 +10,7 @@ import { Button } from '@/components/ui';
 import TicketBadge from '@/app/(dashboard)/events/components/TicketBadge';
 import { formatEventDateTime } from '@/lib/utils';
 
-import { Event } from '@/services/types';
+import { Event } from '@/types';
 import { getEvent } from '@/modules/events/api';
 import { createBooking } from '@/modules/bookings/api';
 

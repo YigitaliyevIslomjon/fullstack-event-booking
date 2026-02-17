@@ -4,7 +4,7 @@ import React from 'react';
 import { FormProvider, useForm, type UseFormRegister, type FieldErrors } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import type { AuthResponse } from '@/services/types';
+import type { AuthResponse } from '@/types';
 import type { RegisterFormValues } from '../hooks/useRegister';
 import useRegister from '../hooks/useRegister';
 

@@ -1,5 +1,5 @@
 import apiClient from '@/services/api-client';
-import { Booking, Event } from '@/services/types';
+import { Booking, Event } from '@/types';
 
 export const createBooking = async (eventId: string): Promise<{ booking: Booking; event: Event }> => {
   const response = await apiClient.post<{ booking: Booking; event: Event }>('/bookings', {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 // services
-import { Event } from '@/services/types';
+import { Event } from '@/types';
 // components
 import { Icon } from '@/components/Icons';
 import { Button } from '@/components/ui';
